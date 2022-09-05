@@ -39,7 +39,8 @@ export default {
           "warning",
           "success",
           "text",
-        ].includes(value);
+          "default"
+        ].indexOf(value) >= 0;
       },
     },
     // 图标按钮
@@ -87,12 +88,13 @@ export default {
       if (this.disabled) {
         return;
       } else {
-        console.log("kkkk");
+        this.$emit("click")
       }
     },
   },
 };
 </script>
+
 <style  lang="scss" scoped>
 .y-button {
   width: 70px;

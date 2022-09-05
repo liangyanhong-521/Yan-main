@@ -1,67 +1,82 @@
 <template>
   <div id="app">
-    <h1>34</h1>
     <y-button>文字按钮</y-button>
-    <y-button type="info">文字按钮</y-button>
+    <y-button>文字按钮</y-button>
+    <y-button type="info" @click="handle">文字按钮</y-button>
     <y-button type="text" disabled>文字按钮</y-button>
-    <y-button type="primary" disabled>文字按钮</y-button>
-    <y-button type="error">文字按钮</y-button>
-    <y-button type="warning">文字按钮</y-button>
-    <y-button type="success">文字按钮</y-button>
 
 
-    <y-button size="small" icon="y-icon-yunshangchuan_o"></y-button>
-    <y-button size="small">文字按钮</y-button>
+    <y-popover class = "popover01" trigger="hover" position="right">
+      <y-button slot="button">hover激活</y-button>
+    </y-popover>
 
-       <y-button size="small" icon="y-icon-shanchu">文字</y-button>
+    <y-popover class = "popover02" trigger="focus" position="right">
+      <y-button slot="button">focus激活</y-button>
+    </y-popover>
 
-
-
-    <y-button size="middle" loading>加载中</y-button>
-
-
-    <y-button size="middle" icon="y-icon-shanchu">文字</y-button>
-    <y-button size="middle" icon="y-icon-bianji1">文字</y-button>
-
+    <y-popover class = "popover03" trigger="click" position="right">
+      <y-button slot="button">click激活</y-button>
+    </y-popover>
 
 
-    <y-button size="large" icon="y-icon-tianjia1">文字</y-button>
-    <y-button size="large" icon="y-icon-shanchu">文字</y-button>
-    <y-button size="large" icon="y-icon-sousuo_o">文字按钮</y-button>
-
-
-
-    <y-button type="info">文字按钮</y-button>
-    <y-button type="text">文字按钮</y-button>
-    <y-button type="text" disabled>文字按钮</y-button>
-    <y-button size="small" type = "info">文字按钮</y-button>
-    <y-button size="middle" type = "primary" round>文字按钮</y-button>
-    <y-button size="small" type = "error" round>文字按钮</y-button>
-    <y-button size="large" type = "error" round>文字按钮</y-button>
-    <y-button  type = "warning" disabled>文字按钮</y-button>
-    <y-button  type = "success" round disabled>文字按钮</y-button>
-    <y-button size="middle"  type = "success" disabled >文字按钮</y-button>
-    <y-button loading>加载中</y-button>
+    <y-popover class = "popover04" nestable  :visible="visible" position="bottom">
+      <p>这是一段内容这是一段内容确定删除吗？</p>
+      <div style="display:flex;margin-left:90px;margin-top:-10px">
+        <y-button size="small" type="text" @click="visible = false">取消</y-button>
+        <y-button type="primary" size="small" @click="visible = false">确定</y-button>
+      </div>
+      <y-button slot="button" @click="handle">嵌套激活</y-button>
+    </y-popover>
   </div>
 </template>
 
 <script>
-import YButton from './components/button.vue'
+import YButton from "./components/button.vue";
+import YPopover from "./components/Popover.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    YButton
-  }
-}
+    YButton,
+    YPopover,
+  },
+  data(){
+    return{
+      visible: false,
+    }
+  },
+  methods: {
+    handle() {
+      this.visible = true
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  display: flex;
-  flex-direction: column;
+<style lang="scss" scoped>
+#app{
+  align-items: center;
 }
-</style>
+.popover01{
+  position: relative;
+  left: 350px;
+  top: 60px;
+}
+.popover02{
+  position: relative;
+  left: 350px;
+  top: 160px;
+
+}
+.popover03{
+  position: relative;
+  left: 350px;
+  top: 260px;
+
+}
+.popover04{
+  position: relative;
+  left: 350px;
+  top: 360px;
+}
+</style>>
