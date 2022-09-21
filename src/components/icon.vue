@@ -9,14 +9,11 @@ export default {
     name:"YIcon",
     props:['icon'],
     created(){
-        console.log(this.icon)
         let str = this.icon.substr(2);
-        console.log(str)
     },
     computed:{
         newIcon(){
             return [`#${this.icon.substr(2)}`]
-
         }
     }
 
