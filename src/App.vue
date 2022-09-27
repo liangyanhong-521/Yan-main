@@ -64,31 +64,74 @@
       height="250px"
     ></y-table>
 
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
     <y-input placeholder="请输入内容" v-model="input"></y-input>
-    <br />
-    <br />
     <y-input placeholder="请输入内容" v-model="input" disabled></y-input>
-    <br />
-    <br />
     <y-input placeholder="请输入内容" v-model="input" clearable></y-input>
-
-    <br />
-    <br />
     <!-- 带icon的输入框，icon不同的种类（搜索、日期），有不同的位置（左右） -->
-    <y-input  placeholder="请选择日期"  v-model="input" icon="y-icon-riqi_o"></y-input>
-    <br />
-    <br />
-    <y-input  placeholder="请输入内容" v-model="input" icon="y-icon-sousuo" iconPosition="right"></y-input>
+    <y-input
+      placeholder="请选择日期"
+      v-model="input"
+      icon="y-icon-riqi_o"
+    ></y-input>
+    <y-input
+      placeholder="请输入内容"
+      v-model="input"
+      icon="y-icon-sousuo"
+      iconPosition="right"
+    ></y-input>
+    <y-input :value="value" error="密码格式有错误"></y-input>
 
     <br />
     <br />
-    <y-input   :value="value" error="密码格式有错误"></y-input>
+
+    <y-row>
+      <y-col :span="24">
+        <div class="grid-content bg-purple-dark"></div>
+      </y-col>
+    </y-row>
+
+    <br />
+    <y-row :gutter="20" justify="center">
+      <y-col :span="6"><div class="grid-content bg-purple"></div></y-col>
+      <y-col :span="8" :offset="6"
+        ><div class="grid-content bg-purple-light"></div
+      ></y-col>
+    </y-row>
+    <br />
+
+    <y-row :gutter="20" justify="left">
+      <y-col :span="8" :offset="6"
+        ><div class="grid-content bg-purple"></div
+      ></y-col>
+      <y-col :span="8"><div class="grid-content bg-purple-light"></div></y-col>
+    </y-row>
+    <br />
+
+    <y-row :gutter="14">
+      <y-col :span="6"><div class="grid-content bg-purple"></div></y-col>
+      <y-col :span="6"><div class="grid-content bg-purple-light"></div></y-col>
+      <y-col :span="6"><div class="grid-content bg-purple"></div></y-col>
+      <y-col :span="6"><div class="grid-content bg-purple-dark"></div></y-col>
+    </y-row>
+    <br />
+
+    <y-row :gutter="10">
+      <y-col :span="12" :offset="6"
+        ><div class="grid-content bg-purple-light"></div
+      ></y-col>
+      <!-- <y-col :span="8"><div class="grid-content bg-purple-dark"></div></y-col>
+      <y-col :span="4"><div class="grid-content bg-purple-light"></div></y-col> -->
+    </y-row>
+
+    <br />
+    <br />
+
+    <y-row :gutter="10">
+      <y-col :xs="8" :sm="6" :md="4" :lg="3"><div class="grid-content bg-purple"></div></y-col>
+      <y-col :xs="4" :sm="6" :md="8" :lg="9"><div class="grid-content bg-purple-light"></div></y-col>
+      <y-col :xs="4" :sm="6" :md="8" :lg="9"><div class="grid-content bg-purple"></div></y-col>
+      <y-col :xs="8" :sm="6" :md="4" :lg="3"><div class="grid-content bg-purple-light"></div></y-col>
+    </y-row>
   </div>
 </template>
 
@@ -99,6 +142,8 @@ import YCarousel from "./components/carousel/Carousel.vue";
 import YCarouselItem from "./components/carousel/carousel-item.vue";
 import YTable from "./components/table/table.vue";
 import YInput from "./components/input.vue";
+import YCol from "./components/layout/col.vue";
+import YRow from "./components/layout/row.vue";
 
 export default {
   name: "App",
@@ -109,13 +154,15 @@ export default {
     YCarouselItem,
     YTable,
     YInput,
+    YRow,
+    YCol,
   },
   data() {
     return {
       input: "",
       visible: false,
       selected: "1",
-      value:"1111111",
+      value: "1111111",
       //选中的数据项数组。其中不包括点击全选按钮选中的时候。
       selectedItems: [],
       columns: [
@@ -181,5 +228,23 @@ export default {
 }
 .small {
   line-height: 250px;
+}
+
+.bg-purple-dark {
+  background: #99a9bf;
+}
+.bg-purple {
+  background: #d3dce6;
+}
+.bg-purple-light {
+  background: #e5e9f2;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+.row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
 }
 </style>>
