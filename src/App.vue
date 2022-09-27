@@ -1,5 +1,70 @@
 <template>
   <div id="app">
+    <y-container class="y-container">
+      <y-header class="y-header">Header</y-header>
+      <y-content class="y-content">Main</y-content>
+    </y-container>
+    <br />
+    <br />
+    <y-container class="y-container">
+      <y-header class="y-header">Header</y-header>
+      <y-content class="y-content">Main</y-content>
+      <y-footer class="y-footer">Footer</y-footer>
+    </y-container>
+    <br />
+    <br />
+    <y-container class="y-container">
+      <y-aside width="200px" class="y-aside">Aside</y-aside>
+      <y-content class="y-content">应该就是猜想的这样的Main</y-content>
+    </y-container>
+    <br />
+    <br />
+
+    <y-container class="y-container">
+      <y-header class="y-header">Header</y-header>
+      <y-container class="y-container">
+        <y-aside width="200px" class="y-aside">Aside</y-aside>
+        <y-content class="y-content">Main</y-content>
+      </y-container>
+    </y-container>
+    <br />
+    <br />
+
+    <y-container class="y-container">
+      <y-header class="y-header">Header</y-header>
+      <y-container class="y-container">
+        <y-aside width="200px" class="y-aside">Aside</y-aside>
+        <y-container class="y-container">
+          <y-content  >Main</y-content>
+          <y-footer class="y-footer">Footer</y-footer>
+        </y-container>
+      </y-container>
+    </y-container>
+    <br />
+    <br />
+
+    <y-container class="y-container">
+      <y-aside width="200px" class="y-aside">Aside</y-aside>
+      <y-container class="y-container">
+        <y-header class="y-header">Header</y-header>
+        <y-content class="y-content">Main</y-content>
+      </y-container>
+    </y-container>
+    <br />
+    <br />
+
+    <y-container class="y-container">
+      <y-aside width="200px"  class="y-aside">Aside</y-aside>
+      <y-container class="y-container">
+        <y-header class="y-header">Header</y-header>
+        <y-content class="y-content">Main</y-content>
+        <y-footer class="y-footer">Footer</y-footer>
+      </y-container>
+    </y-container>
+
+    <br />
+    <br />
+
     <y-button>文字按钮</y-button>
     <y-button>文字按钮</y-button>
     <y-button type="info" @click="handle">文字按钮</y-button>
@@ -83,14 +148,6 @@
 
     <br />
     <br />
-
-    <y-row>
-      <y-col :span="24">
-        <div class="grid-content bg-purple-dark"></div>
-      </y-col>
-    </y-row>
-
-    <br />
     <y-row :gutter="20" justify="center">
       <y-col :span="6"><div class="grid-content bg-purple"></div></y-col>
       <y-col :span="8" :offset="6"
@@ -114,23 +171,21 @@
       <y-col :span="6"><div class="grid-content bg-purple-dark"></div></y-col>
     </y-row>
     <br />
+    <br />
 
     <y-row :gutter="10">
-      <y-col :span="12" :offset="6"
+      <y-col :xs="8" :sm="6" :md="4" :lg="3"
+        ><div class="grid-content bg-purple"></div
+      ></y-col>
+      <y-col :xs="4" :sm="6" :md="8" :lg="9"
         ><div class="grid-content bg-purple-light"></div
       ></y-col>
-      <!-- <y-col :span="8"><div class="grid-content bg-purple-dark"></div></y-col>
-      <y-col :span="4"><div class="grid-content bg-purple-light"></div></y-col> -->
-    </y-row>
-
-    <br />
-    <br />
-
-    <y-row :gutter="10">
-      <y-col :xs="8" :sm="6" :md="4" :lg="3"><div class="grid-content bg-purple"></div></y-col>
-      <y-col :xs="4" :sm="6" :md="8" :lg="9"><div class="grid-content bg-purple-light"></div></y-col>
-      <y-col :xs="4" :sm="6" :md="8" :lg="9"><div class="grid-content bg-purple"></div></y-col>
-      <y-col :xs="8" :sm="6" :md="4" :lg="3"><div class="grid-content bg-purple-light"></div></y-col>
+      <y-col :xs="4" :sm="6" :md="8" :lg="9"
+        ><div class="grid-content bg-purple"></div
+      ></y-col>
+      <y-col :xs="8" :sm="6" :md="4" :lg="3"
+        ><div class="grid-content bg-purple-light"></div
+      ></y-col>
     </y-row>
   </div>
 </template>
@@ -144,6 +199,11 @@ import YTable from "./components/table/table.vue";
 import YInput from "./components/input.vue";
 import YCol from "./components/layout/col.vue";
 import YRow from "./components/layout/row.vue";
+import YContainer from "./components/container/container.vue";
+import YHeader from "./components/container/header.vue";
+import YAside from "./components/container/aside.vue";
+import YFooter from "./components/container/footer.vue";
+import YContent from "./components/container/content.vue";
 
 export default {
   name: "App",
@@ -156,6 +216,11 @@ export default {
     YInput,
     YRow,
     YCol,
+    YContainer,
+    YHeader,
+    YAside,
+    YFooter,
+    YContent,
   },
   data() {
     return {
@@ -247,4 +312,27 @@ export default {
   padding: 10px 0;
   background-color: #f9fafc;
 }
+
+.y-header,
+.y-footer {
+  background-color: #b3c0d1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
+
+.y-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+
+.y-content {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
+
 </style>>
