@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "express": "^4.18.1",
     "vue": "^2.6.14"
   },
   "devDependencies": {
@@ -41,5 +42,18 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "## Project setup ``` npm install ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liangyanhong-521/Yan-main.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liangyanhong-521/Yan-main/issues"
+  },
+  "homepage": "https://github.com/liangyanhong-521/Yan-main#readme"
 }

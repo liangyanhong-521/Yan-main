@@ -1,5 +1,35 @@
 <template>
   <div id="app">
+    <span>当页面数小于7时</span>
+    <y-pagination 
+    :total="50" 
+    :current-page.sync="currentPage"
+    :hide-on-single-page="false"
+    ></y-pagination>
+    <br />
+    <br />
+    <span>当页面数大于7时</span>
+    <y-pagination 
+    :total="500" 
+    :current-page.sync="currentPage"
+    :hide-on-single-page="false"
+    ></y-pagination>
+    <br />
+    <br />
+    <y-upload
+      accept="image/jpeg"
+      multiple
+      :file-list.sync="fileList"
+      action="https://api.apiopen.top/getJoke"
+    >
+      <y-button type="primary" @click="handle">点击上传</y-button>
+      <div class="el-upload__tip" slot="tips">
+        只能上传image/png文件，且不超过500kb
+      </div>
+    </y-upload>
+
+    <br />
+    <br />
     <y-container class="y-container">
       <y-header class="y-header">Header</y-header>
       <y-content class="y-content">Main</y-content>
@@ -35,7 +65,7 @@
       <y-container class="y-container">
         <y-aside width="200px" class="y-aside">Aside</y-aside>
         <y-container class="y-container">
-          <y-content  >Main</y-content>
+          <y-content>Main</y-content>
           <y-footer class="y-footer">Footer</y-footer>
         </y-container>
       </y-container>
@@ -54,7 +84,7 @@
     <br />
 
     <y-container class="y-container">
-      <y-aside width="200px"  class="y-aside">Aside</y-aside>
+      <y-aside width="200px" class="y-aside">Aside</y-aside>
       <y-container class="y-container">
         <y-header class="y-header">Header</y-header>
         <y-content class="y-content">Main</y-content>
@@ -67,8 +97,12 @@
 
     <y-button>文字按钮</y-button>
     <y-button>文字按钮</y-button>
+
+    <y-button type="primary">点击上传</y-button>
+
     <y-button type="info" @click="handle">文字按钮</y-button>
     <y-button type="text" disabled>文字按钮</y-button>
+
     <y-popover class="popover01" trigger="hover" position="right">
       <y-button slot="button">hover激活</y-button>
     </y-popover>
@@ -204,6 +238,8 @@ import YHeader from "./components/container/header.vue";
 import YAside from "./components/container/aside.vue";
 import YFooter from "./components/container/footer.vue";
 import YContent from "./components/container/content.vue";
+import YUpload from "./components/upload/upload.vue";
+import YPagination from "./components/pagination.vue";
 
 export default {
   name: "App",
@@ -221,6 +257,8 @@ export default {
     YAside,
     YFooter,
     YContent,
+    YUpload,
+    YPagination,
   },
   data() {
     return {
@@ -228,6 +266,7 @@ export default {
       visible: false,
       selected: "1",
       value: "1111111",
+      currentPage:1,
       //选中的数据项数组。其中不包括点击全选按钮选中的时候。
       selectedItems: [],
       columns: [
@@ -263,6 +302,16 @@ export default {
         { id: 4, name: "陈陈", company: "山西大同大学", score: 99 },
         { id: 5, name: "小黄", company: "浙江工业大学", score: 98 },
         { id: 6, name: "田田", company: "上海海洋大学", score: 92 },
+      ],
+      fileList: [
+        {
+          name: "food.jpeg",
+          url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+        },
+        {
+          name: "food2.jpeg",
+          url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+        },
       ],
     };
   },
@@ -334,5 +383,4 @@ export default {
   text-align: center;
   line-height: 160px;
 }
-
 </style>>

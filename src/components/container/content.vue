@@ -10,7 +10,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scroped>
+<style lang="scss" scoped>
 .content-wrapper{
     flex: 1;
 }

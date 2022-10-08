@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scroped>
+<style lang="scss" scoped>
 .container-wrapper {
   display: flex;
   flex-direction: column;
