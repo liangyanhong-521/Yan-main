@@ -1,18 +1,51 @@
 <template>
   <div id="app">
+    <y-menu :selected.sync="selected" vertical>
+      <y-menu-item name="handle">处理中心</y-menu-item>
+      <y-menu-item name="workTop" disabled>我的工作台</y-menu-item>
+      <y-sub-menu name="about">
+        <template slot="title">关于</template>
+        <y-menu-item name="2-1">选项1</y-menu-item>
+        <y-sub-menu name="2-2">
+          <template slot="title">选项2</template>
+          <y-menu-item name="2-2-1">选项1</y-menu-item>
+          <y-menu-item name="2-2-2">选项2</y-menu-item>
+        </y-sub-menu>
+        <y-menu-item name="2-3">选项3</y-menu-item>
+        <y-menu-item name="2-4">选项4</y-menu-item>
+      </y-sub-menu>
+      <y-menu-item name="center">消息中心</y-menu-item>
+      <y-menu-item name="order">订单管理</y-menu-item>
+    </y-menu>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <span>当页面数小于7时</span>
-    <y-pagination 
-    :total="50" 
-    :current-page.sync="currentPage"
-    :hide-on-single-page="false"
+    <y-pagination
+      :total="50"
+      :current-page.sync="currentPage"
+      :hide-on-single-page="false"
     ></y-pagination>
     <br />
     <br />
     <span>当页面数大于7时</span>
-    <y-pagination 
-    :total="500" 
-    :current-page.sync="currentPage"
-    :hide-on-single-page="false"
+    <y-pagination
+      :total="500"
+      :current-page.sync="currentPage"
+      :hide-on-single-page="false"
     ></y-pagination>
     <br />
     <br />
@@ -125,11 +158,11 @@
       <y-button slot="button" @click="handle">嵌套激活</y-button>
     </y-popover>
 
-    <y-carousel :selected.sync="selected" class="carousel">
+    <!-- <y-carousel :selected.sync="selected" class="carousel">
       <y-carousel-item v-for="item in 4" :key="item" :name="item.toString()">
         <h3 class="small">{{ item }}</h3>
       </y-carousel-item>
-    </y-carousel>
+    </y-carousel> -->
 
     <y-table
       :data="tableData"
@@ -240,6 +273,9 @@ import YFooter from "./components/container/footer.vue";
 import YContent from "./components/container/content.vue";
 import YUpload from "./components/upload/upload.vue";
 import YPagination from "./components/pagination.vue";
+import YMenu from "./components/menu/menu.vue";
+import YMenuItem from "./components/menu/menu-item.vue";
+import YSubMenu from "./components/menu/submenu.vue";
 
 export default {
   name: "App",
@@ -259,14 +295,18 @@ export default {
     YContent,
     YUpload,
     YPagination,
+    YMenu,
+    YMenuItem,
+    YSubMenu,
   },
   data() {
     return {
       input: "",
       visible: false,
-      selected: "1",
+      // selected: "1",
       value: "1111111",
-      currentPage:1,
+      currentPage: 1,
+      selected: "handle",
       //选中的数据项数组。其中不包括点击全选按钮选中的时候。
       selectedItems: [],
       columns: [

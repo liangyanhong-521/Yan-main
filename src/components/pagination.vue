@@ -19,7 +19,7 @@
       type="text"
       class="moreButton"
       v-if="startNumAndEndNum.start > 1"
-      @click="$emit('currentPage', 1)"
+      @click="$emit('update:currentPage', 1)"
       :class="{ active: currentPage == 1 }"
       ><span class="moreButton-button">1</span></y-button
     >
@@ -59,7 +59,7 @@
       size="small"
       class="moreButton"
       v-if="startNumAndEndNum.end < totalPage"
-      @click="$emit('currentPage', totalPage)"
+      @click="$emit('update:currentPage', totalPage)"
       :class="{ active: currentPage == totalPage }"
       ><span class="moreButton-button">{{ totalPage }}</span></y-button
     >
@@ -174,6 +174,9 @@ export default {
       color: rgb(45, 160, 236);
     }
   }
+  .active {
+      color: rgb(45, 160, 236);
+    }
 }
 .prev-pagination {
   color: rgb(53, 51, 51);
