@@ -1,5 +1,46 @@
 <template>
   <div id="app">
+
+    <y-tabs>
+    <y-tab-pane label="用户管理" name="first">用户管理</y-tab-pane>
+    <y-tab-pane label="配置管理" name="second">配置管理</y-tab-pane>
+    <y-tab-pane label="角色管理" name="third">角色管理</y-tab-pane>
+    <y-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</y-tab-pane>
+  </y-tabs>
+
+
+
+
+    <br />
+    <br />
+    <br />
+    <y-collapse :selected="activeNames" accordion>
+      <y-collapse-item title="一致性 Consistency" name="1">
+        <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
+        <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+      </y-collapse-item>
+      <y-collapse-item title="反馈 Feedback" name="2">
+        <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
+        <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+      </y-collapse-item>
+      <y-collapse-item title="效率 Efficiency" name="3">
+        <div>简化流程：设计简洁直观的操作流程；</div>
+        <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
+        <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
+      </y-collapse-item>
+       <y-collapse-item title="可控 Controllability" name="4">
+        <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
+        <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+      </y-collapse-item>
+    </y-collapse>
+
+    <br />
+    <br />
+    <br />
+    <y-button type="text" @click="haddleToast">点击打开Message Box</y-button>
+    <br />
+    <br />
+    <br />
     <y-menu :selected.sync="selected" vertical>
       <y-menu-item name="handle">处理中心</y-menu-item>
       <y-menu-item name="workTop" disabled>我的工作台</y-menu-item>
@@ -17,20 +58,6 @@
       <y-menu-item name="center">消息中心</y-menu-item>
       <y-menu-item name="order">订单管理</y-menu-item>
     </y-menu>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
     <br />
     <br />
     <span>当页面数小于7时</span>
@@ -276,6 +303,11 @@ import YPagination from "./components/pagination.vue";
 import YMenu from "./components/menu/menu.vue";
 import YMenuItem from "./components/menu/menu-item.vue";
 import YSubMenu from "./components/menu/submenu.vue";
+import YToast from "./components/toast.vue";
+import YCollapse from "./components/collapse/collapse.vue";
+import YCollapseItem from "./components/collapse/collapse-item.vue";
+import YTabs from './components/tabs/tabs.vue'
+import YTabsPane from './components/tabs/tabs-pane.vue'
 
 export default {
   name: "App",
@@ -298,9 +330,15 @@ export default {
     YMenu,
     YMenuItem,
     YSubMenu,
+    YToast,
+    YCollapse,
+    YCollapseItem,
+    YTabs,
+    YTabsPane
   },
   data() {
     return {
+      activeNames: ['1'],
       input: "",
       visible: false,
       // selected: "1",
@@ -358,6 +396,24 @@ export default {
   methods: {
     handle() {
       this.visible = true;
+    },
+    haddleToast() {
+      this.$YToast("<h3>这是 <i>HTML</i> 片段</h3>", "弹出框标题", {
+        enableHtml: true,
+        autoClose: true,
+        closeButton: {
+          text: "点击取消",
+          callback: () => {
+            console.log("是点击取消按钮啦");
+          },
+        },
+        confirmButton: {
+          text: "确定",
+          callback: () => {
+            console.log("是点击确定按钮啦");
+          },
+        },
+      });
     },
     //点击选择项时触发的事件
     select() {
