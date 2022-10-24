@@ -1,36 +1,63 @@
 <template>
   <div id="app">
+    <y-cascader :data="options" :selected.sync="selected"> </y-cascader>
 
-    <y-tabs>
-    <y-tab-pane label="用户管理" name="first">用户管理</y-tab-pane>
-    <y-tab-pane label="配置管理" name="second">配置管理</y-tab-pane>
-    <y-tab-pane label="角色管理" name="third">角色管理</y-tab-pane>
-    <y-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</y-tab-pane>
-  </y-tabs>
-
-
-
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <y-tabs :selected.sync="first" direction="vertical">
+      <y-tabs-pane name="first">用户管理</y-tabs-pane>
+      <y-tabs-pane name="second">配置管理</y-tabs-pane>
+      <y-tabs-pane name="third">角色管理</y-tabs-pane>
+      <y-tabs-pane name="fourth">定时任务补偿</y-tabs-pane>
+    </y-tabs>
 
     <br />
     <br />
     <br />
     <y-collapse :selected="activeNames" accordion>
       <y-collapse-item title="一致性 Consistency" name="1">
-        <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-        <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+        <div>
+          与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+        </div>
+        <div>
+          在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。
+        </div>
       </y-collapse-item>
       <y-collapse-item title="反馈 Feedback" name="2">
-        <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
+        <div>
+          控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；
+        </div>
         <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
       </y-collapse-item>
       <y-collapse-item title="效率 Efficiency" name="3">
         <div>简化流程：设计简洁直观的操作流程；</div>
-        <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-        <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
+        <div>
+          清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；
+        </div>
+        <div>
+          帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。
+        </div>
       </y-collapse-item>
-       <y-collapse-item title="可控 Controllability" name="4">
-        <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-        <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+      <y-collapse-item title="可控 Controllability" name="4">
+        <div>
+          用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；
+        </div>
+        <div>
+          结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。
+        </div>
       </y-collapse-item>
     </y-collapse>
 
@@ -41,7 +68,7 @@
     <br />
     <br />
     <br />
-    <y-menu :selected.sync="selected" vertical>
+    <!-- <y-menu :selected.sync="selected" vertical>
       <y-menu-item name="handle">处理中心</y-menu-item>
       <y-menu-item name="workTop" disabled>我的工作台</y-menu-item>
       <y-sub-menu name="about">
@@ -57,7 +84,7 @@
       </y-sub-menu>
       <y-menu-item name="center">消息中心</y-menu-item>
       <y-menu-item name="order">订单管理</y-menu-item>
-    </y-menu>
+    </y-menu> -->
     <br />
     <br />
     <span>当页面数小于7时</span>
@@ -306,8 +333,9 @@ import YSubMenu from "./components/menu/submenu.vue";
 import YToast from "./components/toast.vue";
 import YCollapse from "./components/collapse/collapse.vue";
 import YCollapseItem from "./components/collapse/collapse-item.vue";
-import YTabs from './components/tabs/tabs.vue'
-import YTabsPane from './components/tabs/tabs-pane.vue'
+import YTabs from "./components/tabs/tabs.vue";
+import YTabsPane from "./components/tabs/tabs-pane.vue";
+import YCascader from "./components/cascader/cascader.vue";
 
 export default {
   name: "App",
@@ -334,17 +362,20 @@ export default {
     YCollapse,
     YCollapseItem,
     YTabs,
-    YTabsPane
+    YTabsPane,
+    YCascader,
   },
   data() {
     return {
-      activeNames: ['1'],
+      selected: [],
+      first: "second",
+      activeNames: ["1"],
       input: "",
       visible: false,
       // selected: "1",
       value: "1111111",
       currentPage: 1,
-      selected: "handle",
+      // selected: "handle",
       //选中的数据项数组。其中不包括点击全选按钮选中的时候。
       selectedItems: [],
       columns: [
@@ -391,8 +422,161 @@ export default {
           url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
         },
       ],
+
+      options: [
+        {
+          value: "zhinan",
+          label: "指南",
+          children: [
+            {
+              value: "shejiyuanze",
+              label: "设计原则",
+              children: [
+                {
+                  value: "yizhi",
+                  label: "一致",
+                },
+                {
+                  value: "fankui",
+                  label: "反馈",
+                },
+                {
+                  value: "xiaolv",
+                  label: "效率",
+                },
+              ],
+            },
+
+            {
+              value: "daohang",
+              label: "导航",
+              children: [
+                {
+                  value: "cexiangdaohang",
+                  label: "侧向导航",
+                },
+                {
+                  value: "dingbudaohang",
+                  label: "顶部导航",
+                },
+              ],
+            },
+          ],
+        },
+
+        {
+          value: "zujian",
+          label: "组件",
+          children: [
+            {
+              value: "basic",
+              label: "Basic",
+              children: [
+                {
+                  value: "layout",
+                  label: "Layout 布局",
+                },
+                {
+                  value: "color",
+                  label: "Color 色彩",
+                },
+                {
+                  value: "typography",
+                  label: "Typography 字体",
+                },
+                {
+                  value: "icon",
+                  label: "Icon 图标",
+                },
+                {
+                  value: "button",
+                  label: "Button 按钮",
+                },
+              ],
+            },
+
+            {
+              value: "data",
+              label: "Data",
+              children: [
+                {
+                  value: "table",
+                  label: "Table 表格",
+                },
+                {
+                  value: "tag",
+                  label: "Tag 标签",
+                },
+                {
+                  value: "progress",
+                  label: "Progress 进度条",
+                },
+                {
+                  value: "tree",
+                  label: "Tree 树形控件",
+                },
+                {
+                  value: "pagination",
+                  label: "Pagination 分页",
+                },
+                {
+                  value: "badge",
+                  label: "Badge 标记",
+                },
+              ],
+            },
+            {
+              value: "notice",
+              label: "Notice",
+              children: [
+                {
+                  value: "alert",
+                  label: "Alert 警告",
+                },
+                {
+                  value: "loading",
+                  label: "Loading 加载",
+                },
+                {
+                  value: "message",
+                  label: "Message 消息提示",
+                },
+                {
+                  value: "message-box",
+                  label: "MessageBox 弹框",
+                },
+                {
+                  value: "notification",
+                  label: "Notification 通知",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          value: "ziyuan",
+          label: "资源",
+          children: [
+            {
+              value: "axure",
+              label: "Axure Components",
+            },
+            {
+              value: "sketch",
+              label: "Sketch Templates",
+            },
+            {
+              value: "jiaohu",
+              label: "组件交互文档",
+            },
+          ],
+        },
+      ],
     };
   },
+  // updated() {
+  //   console.log(this.first);
+  // },
   methods: {
     handle() {
       this.visible = true;
